@@ -3,7 +3,7 @@ import SwiftUI
 
 /// The app icon ("Drift"): the white trend arrow on a green gradient.
 /// watchOS crops it to a circle, so the arrow sits in the middle.
-/// Run from design/mockups: swiftc -parse-as-library generate_icon.swift -o /tmp/icon && /tmp/icon
+/// Run from the project folder: swiftc -parse-as-library scripts/generate_icon.swift -o /tmp/icon && /tmp/icon
 let green = Color(red: 0.19, green: 0.82, blue: 0.35)
 let deepGreen = Color(red: 0.08, green: 0.55, blue: 0.30)
 
@@ -41,10 +41,11 @@ struct GenerateIcon {
         func png<V: View>(_ view: V) -> Data {
             let r = ImageRenderer(content: view)
             r.scale = 1
+            r.isOpaque = true // App Store tools reject icons with a transparency channel
             return NSBitmapImageRep(cgImage: r.cgImage!).representation(using: .png, properties: [:])!
         }
-        let root = "../../" // run from design/mockups
+        let root = "" // run from the project folder
         try png(IconView(size: 1024)).write(to: URL(fileURLWithPath: root + "Watch/Assets.xcassets/AppIcon.appiconset/AppIcon.png"))
-        try png(Preview()).write(to: URL(fileURLWithPath: root + "design/mockups/13-icon-drift.png"))
+        try png(Preview()).write(to: URL(fileURLWithPath: root + "docs/screenshots/icon.png"))
     }
 }

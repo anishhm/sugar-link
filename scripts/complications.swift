@@ -6,7 +6,7 @@ import SwiftUI
 // Widgets/GlucoseComplication.swift and Widgets/StepsComplication.swift; the curved
 // corner complication can only be drawn on a watch, so it isn't shown.
 // Run from the project folder:
-//   swiftc -parse-as-library Shared/*.swift design/mockups/complications.swift -o /tmp/compl && /tmp/compl
+//   swiftc -parse-as-library Shared/*.swift scripts/complications.swift -o /tmp/compl && /tmp/compl
 
 let now = Date()
 

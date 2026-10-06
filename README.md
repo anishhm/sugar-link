@@ -1,6 +1,6 @@
 # Sugar Link
 
-<img src="design/mockups/13-icon-drift.png" alt="Sugar Link icon" width="240">
+<img src="docs/screenshots/icon.png" alt="Sugar Link icon" width="240">
 
 Your FreeStyle Libre 3 readings on your Apple Watch: as a **complication** on your watch face, and as a
 **full-screen watch app** with time, glucose, trend arrow, a chart and steps.
@@ -192,7 +192,7 @@ Step counts are read from Health on the watch and never leave it.
 | `Shared/` | LibreLinkUp client, models, settings, Keychain and App Group storage, chart (used by both targets) |
 | `Watch/` | Watch app: login, full-screen view, settings, fetching, background refresh, steps |
 | `Widgets/` | Watch complications (WidgetKit) |
-| `design/mockups/` | Design previews, the script that draws the app icon (`generate_icon.swift`) and the one that draws the complication pictures (`complications.swift`) |
+| `scripts/` | `generate_icon.swift` draws the app icon; `complications.swift` draws the complication pictures in this README |
 | `docs/screenshots/` | The pictures in this README |
 
 **Demo mode (debug builds only):** launch the app with the argument `-demo` to fill it with sample readings
