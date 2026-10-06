@@ -9,7 +9,7 @@ struct SugarLinkWatchApp: App {
         WindowGroup {
             WatchFaceView()
                 .environment(model)
-                .task { await StepsProvider.requestAuthorization() }
+                .task { if !DemoMode.isOn { await StepsProvider.requestAuthorization() } }
         }
         .onChange(of: scenePhase, initial: true) { _, phase in
             switch phase {

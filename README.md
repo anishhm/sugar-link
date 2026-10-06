@@ -14,6 +14,25 @@ Abbott's follower service, over Wi-Fi or cellular.
 
 Sugar Link isn't on the App Store. You build it yourself with Xcode and install it on your own watch; the steps are below.
 
+## Screenshots
+
+**The app:** three pages, scrolled with the Digital Crown.
+
+| Now | Graph | Stats |
+|:---:|:---:|:---:|
+| <img src="docs/screenshots/page1-now.png" alt="Now page: 139 falling, 3-hour graph, steps" width="208"> | <img src="docs/screenshots/page2-graph.png" alt="Graph page: last 12 hours with 3h, 6h and 12h buttons" width="208"> | <img src="docs/screenshots/page3-stats.png" alt="Stats page: 69% in range, average, lowest and highest" width="208"> |
+| Reading, trend, 3-hour graph and today's steps | The last 3, 6 or 12 hours | Time in range, average, lowest and highest over 12 hours |
+
+**The complications** on a watch face, and each one on its own:
+
+<img src="docs/screenshots/complications-face.png" alt="Watch face with the inline, rectangular, circular and steps complications" width="208">
+
+<img src="docs/screenshots/complications.png" alt="Rectangular, circular, inline and steps complications" width="430">
+
+The app pages are screenshots from the watchOS simulator. The complications are drawn on a Mac with the app's own
+chart code, because the simulator's watch face can't be set up automatically; on your watch they look the same,
+in your face's colors. All of them show made-up sample data, not real readings.
+
 ## What you need
 
 | | |
@@ -173,7 +192,12 @@ Step counts are read from Health on the watch and never leave it.
 | `Shared/` | LibreLinkUp client, models, settings, Keychain and App Group storage, chart (used by both targets) |
 | `Watch/` | Watch app: login, full-screen view, settings, fetching, background refresh, steps |
 | `Widgets/` | Watch complications (WidgetKit) |
-| `design/mockups/` | Design previews and the script that draws the app icon (`generate_icon.swift`) |
+| `design/mockups/` | Design previews, the script that draws the app icon (`generate_icon.swift`) and the one that draws the complication pictures (`complications.swift`) |
+| `docs/screenshots/` | The pictures in this README |
+
+**Demo mode (debug builds only):** launch the app with the argument `-demo` to fill it with sample readings
+without logging in; add `-page 1` or `-page 2` to open on the graph or stats page. That's how the screenshots
+were taken.
 | `project.yml` | XcodeGen spec: the Xcode project is generated from this |
 
 ## License

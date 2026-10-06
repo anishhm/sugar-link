@@ -29,7 +29,14 @@ final class GlucoseViewModel {
 
     var isRefreshing: Bool { inFlight != nil }
 
-    init() {}
+    init() {
+        if DemoMode.isOn {
+            DemoMode.seed()
+            snapshot = GlucoseStore.snapshot
+            steps = GlucoseStore.steps
+            isLoggedIn = true
+        }
+    }
 
     /// Logs into LibreLinkUp directly from the watch.
     func logIn(email: String, password: String) async -> String? {
@@ -86,6 +93,7 @@ final class GlucoseViewModel {
 
     /// `force` skips the spacing check (used when you tap the value).
     func refresh(force: Bool = false) async {
+        guard !DemoMode.isOn else { return }
         reloadFromStore()
         guard isLoggedIn else { return }
 

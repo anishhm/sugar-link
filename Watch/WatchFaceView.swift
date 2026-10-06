@@ -10,6 +10,7 @@ struct WatchFaceView: View {
     @Environment(\.isLuminanceReduced) private var isDimmed
 
     @State private var showSettings = false
+    @State private var page = DemoMode.startPage
 
     var body: some View {
         if !model.isLoggedIn {
@@ -19,10 +20,10 @@ struct WatchFaceView: View {
             NavigationStack {
                 Group {
                     if let snapshot = model.snapshot {
-                        TabView {
-                            NowPage(snapshot: snapshot)
-                            GraphPage(snapshot: snapshot, settings: model.settings)
-                            StatsPage(snapshot: snapshot, settings: model.settings)
+                        TabView(selection: $page) {
+                            NowPage(snapshot: snapshot).tag(0)
+                            GraphPage(snapshot: snapshot, settings: model.settings).tag(1)
+                            StatsPage(snapshot: snapshot, settings: model.settings).tag(2)
                         }
                         .tabViewStyle(.verticalPage)
                     } else if let problem = model.problem {
