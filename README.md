@@ -29,10 +29,6 @@ Sugar Link isn't on the App Store. You build it yourself with Xcode and install 
 
 <img src="docs/screenshots/complications.png" alt="Rectangular, circular, inline and steps complications" width="430">
 
-The app pages are screenshots from the watchOS simulator. The complications are drawn on a Mac with the app's own
-chart code, because the simulator's watch face can't be set up automatically; on your watch they look the same,
-in your face's colors. All of them show made-up sample data, not real readings.
-
 ## What you need
 
 | | |
