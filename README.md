@@ -142,9 +142,17 @@ mmol/L), whether the chart and steps show, and log out.
 | Your own apps per device | 3 | unlimited |
 | Share with others (TestFlight) | no | yes |
 
-**With a free account, reinstall every week:** open the project in Xcode, choose your watch and press Run. Your
-login and settings stay on the watch. When the install expires, the app won't open and the complication stops
-updating, so renew it before you depend on it (for example every Sunday).
+**With a free account, reinstall every week.** Your login and settings stay on the watch. When the install
+expires, the app won't open and the complication stops updating, so renew it before you depend on it (for
+example every Sunday). One command rebuilds and installs it, with no need to open Xcode:
+
+```sh
+./scripts/reinstall.sh              # uses the first Apple Watch it finds
+./scripts/reinstall.sh "My Watch"   # or name it, as shown by: xcrun devicectl list devices
+```
+
+Unlock the iPhone and watch and keep them near the Mac on the same Wi-Fi network. You need to have done the
+setup above once (your team picked, Developer Mode on). Or just press Run in Xcode again.
 
 ## How fresh is it?
 
@@ -168,7 +176,7 @@ updating, so renew it before you depend on it (for example every Sunday).
 | Xcode: "No account for team" / "Signing requires a development team" | Pick your Team for **both** targets (step 3). |
 | Xcode: "Your maximum App ID limit has been reached" | Free accounts can register 10 App IDs per week. Wait a few days, or reuse a bundle ID you already registered. |
 | Watch doesn't appear in Xcode | Unlock the iPhone and watch, keep them close, check Developer Mode is on, and wait for "Preparing" to finish. Restarting the watch, iPhone and Xcode helps surprisingly often. |
-| App won't open after a week | The free 7-day install expired. Run from Xcode again. |
+| App won't open after a week | The free 7-day install expired. Run `./scripts/reinstall.sh`, or press Run in Xcode. |
 | Wrong LibreLinkUp email or password | Check you can log in to the LibreLinkUp iPhone app with the same details. |
 | Accept the terms | Open the LibreLinkUp iPhone app and accept the new terms. |
 | Doesn't follow anyone | Send the invite from the Libre 3 app and accept it in LibreLinkUp. |
@@ -188,7 +196,7 @@ Step counts are read from Health on the watch and never leave it.
 | `Shared/` | LibreLinkUp client, models, settings, Keychain and App Group storage, chart (used by both targets) |
 | `Watch/` | Watch app: login, full-screen view, settings, fetching, background refresh, steps |
 | `Widgets/` | Watch complications (WidgetKit) |
-| `scripts/` | `generate_icon.swift` draws the app icon; `complications.swift` draws the complication pictures in this README |
+| `scripts/` | `reinstall.sh` reinstalls the app on your watch; `generate_icon.swift` draws the app icon; `complications.swift` draws the complication pictures in this README |
 | `docs/screenshots/` | The pictures in this README |
 
 **Demo mode (debug builds only):** launch the app with the argument `-demo` to fill it with sample readings
