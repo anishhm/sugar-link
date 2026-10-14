@@ -154,6 +154,21 @@ example every Sunday). One command rebuilds and installs it, with no need to ope
 Unlock the iPhone and watch and keep them near the Mac on the same Wi-Fi network. You need to have done the
 setup above once (your team picked, Developer Mode on). Or just press Run in Xcode again.
 
+### Do it automatically
+
+On a Mac that's usually switched on, let it renew itself:
+
+```sh
+./scripts/schedule.sh          # set up
+./scripts/schedule.sh remove   # turn it off again
+```
+
+This adds a launch agent that checks **every day at 21:00** (and when you log in). Once the last successful
+install is 5 days old, it reinstalls and shows a notification. If the watch can't be reached (Mac asleep or
+off, iPhone or watch away or locked), it tries again the next day and tells you. The watch app restarts for a
+moment when it runs. The log is `~/Library/Logs/SugarLink-reinstall.log`. If you move the project folder, run
+`./scripts/schedule.sh` again. To change the time, edit `Hour` in `scripts/schedule.sh` and run it again.
+
 ## How fresh is it?
 
 - **Full-screen app:** fetches every minute while it's open, and again when you raise your wrist. Tap the value
@@ -196,7 +211,7 @@ Step counts are read from Health on the watch and never leave it.
 | `Shared/` | LibreLinkUp client, models, settings, Keychain and App Group storage, chart (used by both targets) |
 | `Watch/` | Watch app: login, full-screen view, settings, fetching, background refresh, steps |
 | `Widgets/` | Watch complications (WidgetKit) |
-| `scripts/` | `reinstall.sh` reinstalls the app on your watch; `generate_icon.swift` draws the app icon; `complications.swift` draws the complication pictures in this README |
+| `scripts/` | `reinstall.sh` reinstalls the app on your watch, `schedule.sh` and `auto-reinstall.sh` do it automatically every few days; `generate_icon.swift` draws the app icon; `complications.swift` draws the complication pictures in this README |
 | `docs/screenshots/` | The pictures in this README |
 
 **Demo mode (debug builds only):** launch the app with the argument `-demo` to fill it with sample readings
